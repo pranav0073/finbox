@@ -1,0 +1,28 @@
+
+
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+
+    
+
+    {% for item in reviews %}
+    {% if forloop.counter <= 20 %}
+    <hr/>
+    <h1>{{forloop.counter}} {{item.pid}} | {{item.helpfulness}} | {{item.profileName}}</h1>
+    <p>Score :{{ item.score }}</p>
+    <p>summary: {{ item.summary }}</p>
+    <p>Text: {{ item.txt }}</p>
+    <p>Matching words :{{ item.factor}}
+        [
+        {% for word in item.matching_words %}
+            {{word }}
+        {% endfor %}]
+    </p>
+    {% endif %}
+    {% endfor %}
+    
+</div>
